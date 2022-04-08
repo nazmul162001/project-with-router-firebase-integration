@@ -5,7 +5,7 @@ import './Header.css';
 
 const Header = () => {
   // custom hooks/ destructuring
-  const {user} = useFirebase();
+  const {user, handleSignOUt} = useFirebase();
   return (
     <div className="header">
       <nav>
@@ -13,10 +13,11 @@ const Header = () => {
         <Link to="/products">Products</Link>
         <Link to="/orders">Orders</Link>
         <Link to="/register">Register</Link>
+        <span>{user?.displayName && user?.displayName}</span>
         {
-          user.uid 
+          user?.uid 
           ? 
-          <button>Sign Out</button> 
+          <button onClick={handleSignOUt}>Sign Out</button> 
           :
           <Link to="/login">Login</Link>
         }
